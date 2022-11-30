@@ -11,5 +11,6 @@ func appReducer(_ state: AppState, _ action: Action) -> AppState {
 
     var state = state
     state.movies = moviesReducer(state.movies, action)
+    state.statistics = statisticsReducer(state.statistics, action)
     return state
 }

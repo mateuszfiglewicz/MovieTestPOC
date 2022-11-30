@@ -29,6 +29,7 @@
 		674CC1EF2935F39300A263C6 /* AppReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674CC1EE2935F39300A263C6 /* AppReducer.swift */; };
 		674CC1F12935F3B800A263C6 /* MoviesReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674CC1F02935F3B800A263C6 /* MoviesReducer.swift */; };
 		674CC1F429360C2A00A263C6 /* WebserviceCombine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674CC1F329360C2A00A263C6 /* WebserviceCombine.swift */; };
+		674CC1F829374BA900A263C6 /* StatisticsReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674CC1F729374BA900A263C6 /* StatisticsReducer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		674CC1F02935F3B800A263C6 /* MoviesReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesReducer.swift; sourceTree = "<group>"; };
 		674CC1F22935F60A00A263C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		674CC1F329360C2A00A263C6 /* WebserviceCombine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebserviceCombine.swift; sourceTree = "<group>"; };
+		674CC1F729374BA900A263C6 /* StatisticsReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsReducer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,6 +236,7 @@
 			children = (
 				674CC1EE2935F39300A263C6 /* AppReducer.swift */,
 				674CC1F02935F3B800A263C6 /* MoviesReducer.swift */,
+				674CC1F729374BA900A263C6 /* StatisticsReducer.swift */,
 			);
 			path = Reducers;
 			sourceTree = "<group>";
@@ -377,6 +380,7 @@
 				674CC1D52935EE2B00A263C6 /* ImageDownloader.swift in Sources */,
 				674CC1E52935F1D400A263C6 /* MovieDetailsView.swift in Sources */,
 				674CC1E12935F17000A263C6 /* RatingView.swift in Sources */,
+				674CC1F829374BA900A263C6 /* StatisticsReducer.swift in Sources */,
 				674CC1EB2935F2BA00A263C6 /* Store.swift in Sources */,
 				674CC1EF2935F39300A263C6 /* AppReducer.swift in Sources */,
 				674CC1A22935EC7600A263C6 /* MovieAppApp.swift in Sources */,

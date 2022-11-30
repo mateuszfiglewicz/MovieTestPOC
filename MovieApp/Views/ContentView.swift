@@ -12,29 +12,44 @@ struct ContentView: View {
     @EnvironmentObject var store: Store<AppState>
     @State private var search: String = ""
 
-    struct Props {
+    struct MovieProps {
         let movies: [Movie]
         let onSearch: (String) -> Void
     }
 
-    private func map(state: MoviesState) -> Props {
-        Props(movies: state.movies, onSearch: { keyword in
+    struct StatisticsProps {
+        let counter: Int
+    }
+
+    private func map(state: MoviesState) -> MovieProps {
+        MovieProps(movies: state.movies, onSearch: { keyword in
             store.dispatch(action: FetchMovies(search: keyword))
         })
     }
 
+    private func map(state: StatisticsState) -> StatisticsProps {
+        StatisticsProps(counter: state.counter)
+    }
+
     var body: some View {
 
-        let props = map(state: store.state.movies)
+        let movieProps = map(state: store.state.movies)
+        let statisticsProps = map(state: store.state.statistics)
 
         VStack {
 
             TextField("Search", text: $search, onEditingChanged: { _ in }, onCommit: {
-                    props.onSearch(search)
+                movieProps.onSearch(search)
             }).textFieldStyle(RoundedBorderTextFieldStyle())
             .padding()
 
-            List(props.movies, id: \.imdbId) { movie in
+            HStack {
+                Text("Details counter:")
+                Text("\(statisticsProps.counter)")
+                Spacer()
+            }.padding()
+
+            List(movieProps.movies, id: \.imdbId) { movie in
                 NavigationLink(
                     destination: MovieDetailsView(movie: movie),
                     label: {

@@ -17,11 +17,16 @@ protocol ReduxState { }
 
 struct AppState: ReduxState {
    var movies = MoviesState()
+    var statistics = StatisticsState()
 }
 
 struct MoviesState: ReduxState {
     var movies = [Movie]()
     var selectedMovieDetail: MovieDetail?
+}
+
+struct StatisticsState: ReduxState {
+    var counter: Int = 0
 }
 
 protocol Action { }
@@ -41,6 +46,9 @@ struct FetchMovieDetails: Action {
 struct SetMovieDetails: Action {
     let details: MovieDetail
 }
+struct IncrementAction: Action { }
+struct ClearAction: Action { }
+
 
 class Store<StoreState: ReduxState>: ObservableObject {
 

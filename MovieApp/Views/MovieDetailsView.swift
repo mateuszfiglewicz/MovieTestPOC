@@ -13,24 +13,45 @@ struct MovieDetailsView: View {
 
     let movie: Movie
 
-    struct Props {
+    struct DetailsProps {
         let details: MovieDetail?
         let onLoadMovieDetails: (String) -> Void
     }
 
-    private func map(state: MoviesState) -> Props {
-        Props(details: state.selectedMovieDetail, onLoadMovieDetails: { imdbId in
+    struct StatisticsProps {
+        let onAppear: () -> Void
+        let onReset: () -> Void
+    }
+
+    private func map(state: MoviesState) -> DetailsProps {
+        DetailsProps(details: state.selectedMovieDetail, onLoadMovieDetails: { imdbId in
             store.dispatch(action: FetchMovieDetails(imdbId: imdbId))
         })
     }
 
+    private func map(state: StatisticsState) -> StatisticsProps {
+        StatisticsProps {
+            store.dispatch(action: IncrementAction())
+        } onReset: {
+            store.dispatch(action: ClearAction())
+        }
+    }
+
     var body: some View {
         VStack {
-            let props = map(state: store.state.movies)
+            let detailsProps = map(state: store.state.movies)
+            let statisticsProps = map(state: store.state.statistics)
 
             Group {
-                if let details = props.details {
+                if let details = detailsProps.details {
                     VStack(alignment: .leading) {
+                        
+                        HStack {
+                            Button("Reset statistics") {
+                                statisticsProps.onReset()
+                            }
+                        }.padding()
+
                         HStack {
                             Spacer()
                             URLImage(url: details.poster)
@@ -47,14 +68,16 @@ struct MovieDetailsView: View {
                         }.padding()
 
                         Spacer()
-                    }
+                    }.onAppear(perform:  {
+                        statisticsProps.onAppear()
+                    })
                 } else {
                     Text("Loading...")
                 }
             }
 
             .onAppear(perform: {
-                props.onLoadMovieDetails(movie.imdbId)
+                detailsProps.onLoadMovieDetails(movie.imdbId)
             })
 
         }
